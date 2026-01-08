@@ -1,0 +1,35 @@
+name: Deploy New Project
+on: push
+jobs:
+    lint:
+        runs-on: self-hosted
+        steps:
+            - name: Get code
+              uses: actions/checkout@v6
+            - name: Install dependencies
+              run: npm ci
+            - name: Run lint test
+              run: npm lint
+    test:
+        needs: lint
+        runs-on: self-hosted
+        steps:
+            - name: Get code
+              uses: actions/checkout@v6
+            - name: Install dependencies
+              run: npm ci
+            - name: Run test
+              run: npm test
+    build:
+        needs: test
+        runs-on: self-hosted
+        steps:
+            - name: Get code
+              uses: actions/checkout@v6
+            - name: Install dependencies
+              run: npm ci
+            - name: Build the app
+              run: npm run build
+            - name: Deploy the app
+              run: echo "Deploying...."
+              
