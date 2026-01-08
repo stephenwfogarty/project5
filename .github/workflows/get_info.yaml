@@ -7,4 +7,4 @@ jobs:
         runs-on: self-hosted
         steps:
             - name: Get info
-              run: echo ${{ github}}
+              run: echo "${{ toJson(github) }}"
