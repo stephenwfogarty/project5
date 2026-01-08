@@ -1,5 +1,7 @@
 name: Get github info Project
-on: issues
+on: 
+    issues:
+        types: [opened]
 jobs:
     lint:
         runs-on: self-hosted
